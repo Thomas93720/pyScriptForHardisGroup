@@ -16,13 +16,13 @@ def parse_arguments():
         '--hostname',
         type=str,
         required=True,
-        help="Le nom d'hôte, ex : 'example.com'.",
+        help="Le nom d'hôte, ex : 'google.fr'.",
     )
     Parser.add_argument(
         '--uri',
         type=str,
         required=True,
-        help="L'URI, ex : '/path'.",
+        help="L'URI, ex : '/produits'.",
     )
     Parser.add_argument(
         '-thr',
@@ -39,9 +39,9 @@ def parse_arguments():
         'https',
     }
     if Args.protocol in ProtocolValues is False:
-        raise ValueError("Veuillez renseigner un protocol valide")
+        raise ValueError("Veuillez renseigner un protocole valide")
     
     if Args.hostname is None or Args.uri is None or Args.threshold is None:
         raise ValueError("Veuillez renseigner tous les arguments")
-    
+
     return Args
