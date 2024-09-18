@@ -60,7 +60,7 @@ def format_url(
     protocol,
     hostname,
     uri,   
-):
+)  -> str:
     '''
     Permettant de formatter une URL incluant le protocole, le nom d'hôte et l'URI.
     Par exemple, format_url("https", "google.com", "/fr") doit retourner "https://google.com/fr".
