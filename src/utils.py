@@ -1,15 +1,27 @@
 import requests
 import argparse
 
-def http_get(url) -> dict:
+from exceptions import ThresholdExceededException
+
+def http_get(
+        url,
+        threshold,
+    ) -> dict:
     '''
     Envoyer une requête GET à l'url en argument et retourner le resultat si pas d'erreur http
     '''
-    Request = requests.get(url)
-    Request.raise_for_status()
-    if 'application/json' in Request.headers.get('Content-Type', ''):
-        return Request.json()
-    raise ValueError("La réponse n'est pas en format JSON")
+    try:
+        Request = requests.get(
+            url=url,
+            timeout=threshold,
+        )
+    except requests.Timeout:
+        raise ThresholdExceededException()
+    if Request.status_code != 200:
+        raise ValueError('Une erreur est survenue')
+    if 'application/json' not in Request.headers.get('Content-Type', ''):
+        raise ValueError("La réponse n'est pas en format JSON")
+    return Request.json()
 
 def parse_arguments():
     Parser = argparse.ArgumentParser() # Crée un parseur pour la ligne de commande
