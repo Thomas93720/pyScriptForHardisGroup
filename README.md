@@ -15,7 +15,7 @@ Pour installer ce projet, suivez les étapes ci-dessous :
 1. **Clonez le dépôt :**
 
    ```bash
-   git clone https://github.com/votre-utilisateur/nom-du-projet.git
+   git clone https://github.com/Thomas93720/pyScriptForHardisGroup.git
    cd nom-du-projet
 
 3. **Créer un environement virtuel :**
@@ -28,16 +28,16 @@ Pour installer ce projet, suivez les étapes ci-dessous :
     ```bash
     pip install -e .
 
-    Celle-ci va se charger d installer le projet correctement
+Celle-ci va se charger d'installer le projet correctement
 
 ## Utilisation
 
 Pour utiliser ce projet lancer le main.py à l'aide de python en version compatible après avoir suivi l'[Installation](#installation)
 En lui fournissant les arguments suivant:
-protocol: str, pouvant être (http ou https)
-hostname: str (exemple: google.fr)
-uri: str (exemple: /api)
-threshold: int , nombre de secondes avant de stopper la requête
+- protocol: str, pouvant être (http ou https)
+- hostname: str (exemple: google.fr)
+- uri: str (exemple: /api)
+- threshold: int , nombre de secondes avant de stopper la requête.
 
 ## Test
 
@@ -46,4 +46,5 @@ Pour lancer les tests du projet utliser la commande:
     ```bash
     python -m unittest discover -s tests
     ```
-Ceci va tester uniquement le bon formatage de la fonction format_url() et ne verifie pas le protocol nom d'hôte ou autre !
+
+Ceci va tester uniquement le bon formatage de la fonction format_url() et ne vérifie pas le protocole, nom d'hôte ou autre !
