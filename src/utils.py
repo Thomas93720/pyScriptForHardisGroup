@@ -1,5 +1,9 @@
 import requests
 import argparse
+import logging
+
+# Car par défaut ne montre que les critical
+logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 
 from exceptions import ThresholdExceededException
 
@@ -15,12 +19,20 @@ def http_get(
             url=url,
             timeout=threshold,
         )
+        Request.raise_for_status()
+
     except requests.Timeout:
         raise ThresholdExceededException()
-    if Request.status_code != 200:
-        raise ValueError('Une erreur est survenue')
+
+    except requests.exceptions.HTTPError as http_error:
+        logging.critical(msg=str('Erreur, Code http: '+str(Request.status_code)+' detail: '+str(http_error)))
+        raise http_error
+
     if 'application/json' not in Request.headers.get('Content-Type', ''):
+        logging.critical(msg=str('Erreur, Code http:'+str(Request.status_code)+" detail: La réponse n'est pas en format JSON"))
         raise ValueError("La réponse n'est pas en format JSON")
+
+    logging.info(msg=str('Succes, Code http: '+str(Request.status_code)))
     return Request.json()
 
 def parse_arguments():
