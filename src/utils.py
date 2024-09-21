@@ -17,7 +17,8 @@ def http_get(
         )
     except requests.Timeout:
         raise ThresholdExceededException()
-
+    if Request.status_code != 200:
+        raise ValueError('Une erreur est survenue')
     if 'application/json' not in Request.headers.get('Content-Type', ''):
         raise ValueError("La réponse n'est pas en format JSON")
     return Request.json()
