@@ -23,6 +23,7 @@ def http_get(
         Request.raise_for_status()
 
     except requests.Timeout:
+        logging.critical("Erreur, detail: Le seuil de temps d'exécution a été dépassé.")
         raise ThresholdExceededException()
 
     except requests.exceptions.HTTPError as http_error:
