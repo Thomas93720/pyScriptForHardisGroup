@@ -1,14 +1,15 @@
 import requests
 import argparse
 
-def http_get() -> dict:
+def http_get(url) -> dict:
     '''
-    Envoyer une requête à l'endpoint en get et retourner le resultat si pas d'erreur http
+    Envoyer une requête GET à l'url en argument et retourner le resultat si pas d'erreur http
     '''
-    Endpoint = 'https://dummyjson.com/products'
-    Request = requests.get(Endpoint)
+    Request = requests.get(url)
     Request.raise_for_status()
-    return Request.json()
+    if 'application/json' in Request.headers.get('Content-Type', ''):
+        return Request.json()
+    raise ValueError("La réponse n'est pas en format JSON")
 
 def parse_arguments():
     Parser = argparse.ArgumentParser() # Crée un parseur pour la ligne de commande
