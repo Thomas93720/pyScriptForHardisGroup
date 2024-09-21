@@ -2,10 +2,11 @@ import requests
 import argparse
 import logging
 
+from exceptions import ThresholdExceededException
+
 # Car par défaut ne montre que les critical
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 
-from exceptions import ThresholdExceededException
 
 def http_get(
         url,
