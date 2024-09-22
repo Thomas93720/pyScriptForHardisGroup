@@ -22,13 +22,21 @@ Pour installer ce projet, suivez les étapes ci-dessous :
 
     ```bash
     python -m venv env
+    - macOs : source env/bin/activate
+    - Windows : .\env\Scripts\activate
 
-2. **Lancer la commande :**
+2. **Installer les dépendances :**
+
+    ```bash
+    pip install -r requirements.txt
+    pip install -e .
+
+3. **Installer le projet :**
 
     ```bash
     pip install -e .
 
-Celle-ci va se charger d'installer le projet correctement
+Apres installatation lancer les [Tests](#tests) est recommandé
 
 ## Utilisation
 
