@@ -2,7 +2,7 @@ from src.utils import parse_arguments,format_url,http_get
 
 if __name__ == "__main__":
     '''
-    Appel des fonctions uniquement lorsque le script sera exécuté directement.
+    Lancer le projet avec toutes ses fonctions.
     '''
     arguments = parse_arguments()
     Protocol = arguments.protocol

@@ -4,7 +4,8 @@ from src.utils import format_url
 
 class TestFormatUrl(unittest.TestCase):
     '''
-    Test du bon fonctionnement de la fonction format_url()
+    Test pour la fonction format_url()
+    Vérifie que les URL sont correctement formatées.
     '''
     def test_url_formatting(self):
         '''

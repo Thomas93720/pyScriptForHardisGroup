@@ -9,11 +9,24 @@ logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
 
 
 def http_get(
-        url,
-        threshold,
+        url: str,
+        threshold: int,
     ) -> dict:
     '''
-    Envoyer une requête GET à l'url en argument et retourner le resultat si pas d'erreur http
+    Envoie une requête GET à l'URL spécifiée et retourne la réponse sous forme de dictionnaire JSON.
+    Lève des exceptions si des erreurs HTTP ou des dépassements de seuil surviennent.
+
+    Args:
+        url (str): L'URL vers laquelle la requête GET doit être envoyée.
+        threshold (int): Le délai maximum (en secondes) avant qu'une exception de timeout ne soit levée.
+
+    Returns:
+        dict: La réponse JSON sous forme de dictionnaire si la requête réussit.
+
+    Raises:
+        ThresholdExceededException: Si le délai de la requête dépasse le seuil.
+        HTTPError: Si une erreur HTTP est rencontrée.
+        ValueError: Si la réponse n'est pas au format JSON.
     '''
     try:
         Request = requests.get(
@@ -38,6 +51,15 @@ def http_get(
     return Request.json()
 
 def parse_arguments():
+    '''
+    Parse les arguments de la ligne de commande et valide leur format.
+
+    Returns:
+        argparse.Namespace: Un objet contenant les arguments de la ligne de commande.
+
+    Raises:
+        ValueError: Si un argument n'est pas valide.
+    '''
     Parser = argparse.ArgumentParser() # Crée un parseur pour la ligne de commande
 
     # Ajout des arguments requis
@@ -84,13 +106,23 @@ def parse_arguments():
     return Args
 
 def format_url(
-    protocol,
-    hostname,
-    uri,   
+    protocol:str,
+    hostname:str,
+    uri:str,
 ) -> str:
     '''
-    Permettant de formatter une URL incluant le protocole, le nom d'hôte et l'URI.
-    Par exemple, format_url("https", "google.com", "/fr") doit retourner "https://google.com/fr".
+    Permet de formatter une URL incluant le protocole, le nom d'hôte et l'URI.
+
+    Args:
+        protocol (str): Le protocole ('http' ou 'https').
+        hostname (str): Le nom d'hôte (ex: 'dummyjson.com').
+        uri (str): L'URI (ex: '/products').
+
+    Returns:
+        str: L'URL formatée.
+
+    Exemple:
+        format_url("https", "dummyjson.com", "/products") -> "https://dummyjson.com/products"
     '''
     # Les vérifications des champs étant déja dans la fonction avant celle-ci inutile de les
     # remettre pour eviter une duplication de code ainsi qu'ajouter plus de complexité.
