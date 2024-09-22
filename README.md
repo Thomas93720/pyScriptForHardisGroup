@@ -16,7 +16,7 @@ Pour installer ce projet, suivez les étapes ci-dessous :
 
    ```bash
    git clone https://github.com/Thomas93720/pyScriptForHardisGroup.git
-   cd nom-du-projet
+   cd pyScriptForHardisGroup
 
 3. **Créer un environement virtuel :**
 
