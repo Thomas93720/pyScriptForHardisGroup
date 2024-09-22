@@ -1,4 +1,4 @@
-from utils import parse_arguments,format_url,http_get
+from src.utils import parse_arguments,format_url,http_get
 
 if __name__ == "__main__":
     '''

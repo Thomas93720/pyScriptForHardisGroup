@@ -22,14 +22,13 @@ Pour installer ce projet, suivez les étapes ci-dessous :
 
     ```bash
     python -m venv env
-    - macOs : source env/bin/activate
+    - macOs/unix : source env/bin/activate
     - Windows : .\env\Scripts\activate
 
 2. **Installer les dépendances :**
 
     ```bash
     pip install -r requirements.txt
-    pip install -e .
 
 3. **Installer le projet :**
 
@@ -40,12 +39,18 @@ Apres installatation lancer les [Tests](#tests) est recommandé
 
 ## Utilisation
 
-Pour utiliser ce projet lancer le main.py à l'aide de python en version compatible après avoir suivi l'[Installation](#installation)
+Pour utiliser ce projet lancer le main.py à l'aide de python en version compatible après avoir suivi l'[Installation](#installation) à la racine du projet comme suit: python3 -m src.main
 En lui fournissant les arguments suivant:
 - protocol: str, pouvant être (http ou https)
 - hostname: str (exemple: google.fr)
 - uri: str (exemple: /api)
 - threshold: int , nombre de secondes avant de stopper la requête.
+
+exemple de requete:
+
+    ```bash
+    python3 -m src.main --protocol "https" --hostname "dummyjson.com" --uri "/products" --threshold 5
+    ```
 
 ## Test
 
